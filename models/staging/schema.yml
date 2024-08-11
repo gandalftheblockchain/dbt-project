@@ -52,3 +52,9 @@ models:
             description: "The usd amount of token at a given timestamp."
           - name: timestamp_price
             description: "The timestamp in utc of token."
+      tests:
+        - dbt_utils.unique_combination_of_columns:
+            combination_of_columns:
+              - blockchain
+              - contract_address
+              - token_symbol
