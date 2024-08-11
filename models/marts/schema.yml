@@ -1,0 +1,34 @@
+
+version: 2
+
+models:
+    - name: erc20_transfers_prices
+      description: "erc20 table including usd_price amount in transfer. Transfers and Prices was pulled from Alchemy and Coingecko respectively."
+      columns:
+          - name: unique_id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+          - name: block_num
+            description: "The block number for the transfer in hex."
+          - name: tx_hash
+            description: "The transaction has for the transfer."
+          - name: tx_from
+            description: "The wallet address that sent the tranfer."
+          - name: tx_to
+            description: "The wallet address that received the tranfer."
+          - name: value_decimal
+            description: "The amount of the cryptocurrency asset in decimals."
+          - name: value_usd
+            description: "The usd amount of the cryptocurrency asset at time of transfer."
+          - name: asset
+            description: "The cryptocurrency used in transfer."
+          - name: value
+            description: "The value in hex."
+          - name: contract_address
+            description: "The token contract address."
+          - name: decimal
+            description: "The number of decimals in value in hex."
+          - name: block_timestamp
+            description: "The timestamp in utc of block."
