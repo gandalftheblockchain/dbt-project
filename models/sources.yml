@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+    - name: coingecko
+      description: This is a table for storing CoinGecko token prices
+      database: raw
+      schema: coingecko
+      tables:
+          - name: token_prices
+            description: One record per hourly price and token.
+    - name: erc20
+      description: This is a table for storing ERC20 token transfers
+      database: raw
+      schema: erc20
+      tables:
+          - name: erc20_transfers
+            description: One record per transfer

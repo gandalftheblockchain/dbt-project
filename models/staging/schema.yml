@@ -1,0 +1,60 @@
+
+version: 2
+
+models:
+    - name: stg_erc20_transfers
+      description: "This raw table is an erc20 table that was pulled from Alchemy API - alchemy_getAssetTransfers." 
+      columns:
+          - name: unique_id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: block_num
+            description: "The block number for the transfer in hex."
+          - name: tx_hash
+            description: "The transaction has for the transfer."
+          - name: tx_from
+            description: "The wallet address that sent the tranfer."
+          - name: tx_to
+            description: "The wallet address that received the tranfer."
+          - name: value_decimal
+            description: "The amount of the cryptocurrency asset in decimals."
+          - name: asset
+            description: "The cryptocurrency used in transfer."
+          - name: value
+            description: "The value in hex."
+          - name: contract_address
+            description: "The token contract address."
+          - name: decimal
+            description: "The number of decimals in value in hex."
+          - name: block_timestamp
+            description: "The timestamp in utc of block."
+    - name: stg_token_prices
+      description: "This raw table is a token price table that was pulled from Coingecko API - Coin Historical Chart Data within Time Range by ID for the last 50 days at an hour granularity."
+      columns:
+          - name: id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+          - name: token_id
+            description: "The token id."
+          - name: token_symbol
+            description: "The symbol of the token."
+          - name: token_name
+            description: "The name of the token."
+          - name: blockchain
+            description: "The blockchain of the token."
+          - name: contract_address
+            description: "The contract address of the token."
+          - name: usd_price
+            description: "The usd amount of token at a given timestamp."
+          - name: timestamp_price
+            description: "The timestamp in utc of token."
+      tests:
+        - dbt_utils.unique_combination_of_columns:
+            combination_of_columns:
+              - blockchain
+              - contract_address
+              - token_symbol
